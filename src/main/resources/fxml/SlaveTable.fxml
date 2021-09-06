@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<StackPane prefHeight="460.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171"
+           xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane"
+           fx:controller="com.boyinet.modbus.transform.controller.SlaveTableController">
+    <AnchorPane prefHeight="460.0" prefWidth="780.0">
+        <HBox prefHeight="50.0" prefWidth="609.0" spacing="8.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets left="8.0" top="8.0"/>
+            </padding>
+            <Button mnemonicParsing="false" onAction="#openAddDialog" styleClass="btn-primary" text="添 加"/>
+            <Button mnemonicParsing="false" styleClass="btn-danger" text="批量删除"/>
+        </HBox>
+        <TableView fx:id="slaveTable" layoutY="51.0" prefHeight="379.0" prefWidth="800.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="52.0">
+            <columns>
+                <TableColumn fx:id="slaveAddrColumn" prefWidth="90.0" text="从机地址"/>
+                <TableColumn fx:id="regTypeColumn" prefWidth="90.0" text="寄存器类型"/>
+                <TableColumn fx:id="funcColumn" prefWidth="90.0" text="功能码"/>
+                <TableColumn fx:id="regStartAddrColumn" prefWidth="120.0" text="寄存器起始地址"/>
+                <TableColumn fx:id="regNumColumn" prefWidth="120.0" text="映射寄存器数量"/>
+                <TableColumn fx:id="mapStartAddrColumn" prefWidth="90.0" text="映射起始地址"/>
+            </columns>
+        </TableView>
+    </AnchorPane>
+    <JFXDialog fx:id="slaveDialog" transitionType="TOP">
+        <JFXDialogLayout minWidth="325.0">
+            <heading>
+                <Label fx:id="slaveTitle" text="从机信息"/>
+            </heading>
+            <body>
+                <GridPane layoutY="15.0" prefHeight="285.0" prefWidth="323.0" AnchorPane.bottomAnchor="51.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="122.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="160.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <Label text="从机地址"/>
+                    <Label text="寄存器类型" GridPane.rowIndex="1"/>
+                    <Label text="功能码" GridPane.rowIndex="2"/>
+                    <Label text="寄存器器起始地址" GridPane.rowIndex="3"/>
+                    <Label text="寄存器数量" GridPane.rowIndex="4"/>
+                    <Label text="起始映射地址" GridPane.rowIndex="5"/>
+                    <TextField fx:id="slaveAddrTf" maxWidth="160.0" prefHeight="23.0" prefWidth="160.0"
+                               GridPane.columnIndex="1"/>
+                    <ComboBox fx:id="regTypeCb" prefWidth="160.0" GridPane.columnIndex="1"
+                              GridPane.rowIndex="1">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="布尔"/>
+                                <String fx:value="16位"/>
+                                <String fx:value="32位"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <ComboBox fx:id="funcCb" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <TextField fx:id="regAddrTf" maxWidth="160.0" prefWidth="160.0" GridPane.columnIndex="1"
+                               GridPane.rowIndex="3"/>
+                    <TextField fx:id="regNumTf" maxWidth="160.0" prefWidth="160.0" GridPane.columnIndex="1"
+                               GridPane.rowIndex="4"/>
+                    <ComboBox fx:id="mapAddrCb" prefWidth="160.0" GridPane.columnIndex="1"
+                              GridPane.rowIndex="5"/>
+                </GridPane>
+            </body>
+            <actions>
+                <Button onAction="#cancel" styleClass="btn-default">取消</Button>
+                <Button onAction="#save" styleClass="btn-primary">保存</Button>
+            </actions>
+        </JFXDialogLayout>
+    </JFXDialog>
+</StackPane>
+

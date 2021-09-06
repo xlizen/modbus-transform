@@ -1,0 +1,27 @@
+.root {
+    -fx-font-size: 14;
+}
+
+.btn-danger {
+    -fx-text-fill: #fff;
+    -fx-border-color: #ff4d4f;
+    -fx-background-color: #ff4d4f;
+}
+
+.btn-primary {
+    -fx-text-fill: #fff;
+    -fx-border-color: #1890ff;
+    -fx-background-color: #1890ff;
+}
+
+.btn-warning {
+    -fx-text-fill: #fff;
+    -fx-border-color: #ffbe18;
+    -fx-background-color: #ffbe18;
+}
+
+.btn-default {
+    -fx-text-fill: #000;
+    -fx-background-color: #fff;
+    -fx-border-color: #d9d9d9;
+}

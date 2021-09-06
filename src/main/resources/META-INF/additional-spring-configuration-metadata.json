@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "javafx.stage.resizable",
+      "type": "java.lang.Boolean",
+      "description": "Description for javafx.stage.resizable."
+    },
+    {
+      "name": "javafx.appicons[0]",
+      "type": "java.lang.String",
+      "description": "Description for javafx.appicons[0]."
+    }
+  ] }

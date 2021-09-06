@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.boyinet.modbus.transform.controller.IndexController" fx:id="root">
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu mnemonicParsing="false" text="从机">
+            <MenuItem mnemonicParsing="false" text="从机映射表" onAction="#openSlaveDialog"/>
+            <MenuItem mnemonicParsing="false" text="退出"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="帮助">
+            <MenuItem mnemonicParsing="false" text="关于"/>
+        </Menu>
+    </MenuBar>
+    <AnchorPane VBox.vgrow="ALWAYS">
+        <HBox layoutX="14.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="462.0" prefWidth="760.0" spacing="8.0"
+              style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0"
+              AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+            </padding>
+            <AnchorPane prefWidth="430.0"
+                        style="-fx-border-insets: 8 0 0 0; -fx-background-color: #FFFFFF; -fx-border-color: black;">
+                <Label alignment="TOP_LEFT" layoutX="14.0"
+                       style="-fx-padding: 0 5; -fx-background-color: inherit;" text="Modbus RTU Master"/>
+                <AnchorPane fx:id="txPane" prefHeight="400.0" prefWidth="420.0"
+                            AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0"
+                            AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="10.0">
+                    <GridPane layoutY="1.0" prefHeight="280.0" prefWidth="310.0"
+                              AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="10.0"
+                              AnchorPane.topAnchor="1.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0"
+                                               prefWidth="110.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="3.0"
+                                               prefWidth="272.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <padding>
+                            <Insets left="16.0"/>
+                        </padding>
+                        <Label text="串口号"/>
+                        <ComboBox fx:id="portNameTx" prefHeight="23.0" prefWidth="175.0"
+                                  GridPane.columnIndex="1"/>
+                        <Label text="波特率" GridPane.rowIndex="1"/>
+                        <ComboBox fx:id="baudRateTx" prefHeight="23.0" prefWidth="175.0"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <Integer fx:value="1200"/>
+                                    <Integer fx:value="2400"/>
+                                    <Integer fx:value="4800"/>
+                                    <Integer fx:value="9600"/>
+                                    <Integer fx:value="14400"/>
+                                    <Integer fx:value="19200"/>
+                                    <Integer fx:value="38400"/>
+                                    <Integer fx:value="56000"/>
+                                    <Integer fx:value="57600"/>
+                                    <Integer fx:value="115200"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <Label text="数据位" GridPane.rowIndex="2"/>
+                        <ComboBox fx:id="dataBitsTx" prefHeight="23.0" prefWidth="175.0"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <Integer fx:value="7"/>
+                                    <Integer fx:value="8"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <Label text="停止位" GridPane.rowIndex="3"/>
+                        <ComboBox fx:id="stopBitsTx" prefHeight="23.0" prefWidth="175.0"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <Integer fx:value="1"/>
+                                    <Integer fx:value="2"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <Label text="校验位" GridPane.rowIndex="4"/>
+                        <ComboBox fx:id="parityTx" prefHeight="23.0" prefWidth="175.0"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="NONE"/>
+                                    <String fx:value="ODD"/>
+                                    <String fx:value="EVEN"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </GridPane>
+                    <Button fx:id="txButton" mnemonicParsing="false" onAction="#openTx"
+                            prefHeight="30.0" prefWidth="280.0" text="读 取"
+                            AnchorPane.leftAnchor="20.0"
+                            styleClass="btn-primary"
+                            AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="300.0"/>
+
+                </AnchorPane>
+            </AnchorPane>
+            <Separator orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0"/>
+            <AnchorPane prefWidth="430.0"
+                        style="-fx-border-insets: 8 0 0 0; -fx-background-color: #FFFFFF; -fx-border-color: black;">
+                <Label alignment="TOP_LEFT" layoutX="14.0"
+                       style="-fx-padding: 0 5; -fx-background-color: inherit;" text="Modbus RTU Slaver"/>
+                <AnchorPane fx:id="rxPane" prefHeight="400.0" prefWidth="420.0"
+                            AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0"
+                            AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="10.0">
+                    <GridPane layoutY="1.0" prefHeight="280.0" prefWidth="310.0"
+                              AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="20.0"
+                              AnchorPane.topAnchor="1.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0"
+                                               prefWidth="110.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="3.0"
+                                               prefWidth="190.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <padding>
+                            <Insets left="16.0"/>
+                        </padding>
+                        <children>
+                            <Label text="串口号"/>
+                            <ComboBox fx:id="portNameRx" prefHeight="23.0" prefWidth="175.0"
+                                      GridPane.columnIndex="1"/>
+                            <Label text="波特率" GridPane.rowIndex="1"/>
+                            <ComboBox fx:id="baudRateRx" prefHeight="23.0" prefWidth="175.0"
+                                      GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <Integer fx:value="1200"/>
+                                        <Integer fx:value="2400"/>
+                                        <Integer fx:value="4800"/>
+                                        <Integer fx:value="9600"/>
+                                        <Integer fx:value="14400"/>
+                                        <Integer fx:value="19200"/>
+                                        <Integer fx:value="38400"/>
+                                        <Integer fx:value="56000"/>
+                                        <Integer fx:value="57600"/>
+                                        <Integer fx:value="115200"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                            <Label text="数据位" GridPane.rowIndex="2"/>
+                            <ComboBox fx:id="dataBitsRx" prefHeight="23.0" prefWidth="175.0"
+                                      GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <Integer fx:value="7"/>
+                                        <Integer fx:value="8"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                            <Label text="停止位" GridPane.rowIndex="3"/>
+                            <ComboBox fx:id="stopBitsRx" prefHeight="23.0" prefWidth="175.0"
+                                      GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <Integer fx:value="1"/>
+                                        <Integer fx:value="2"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                            <Label text="校验位" GridPane.rowIndex="4"/>
+                            <ComboBox fx:id="parityRx" prefHeight="23.0" prefWidth="175.0"
+                                      GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="NONE"/>
+                                        <String fx:value="ODD"/>
+                                        <String fx:value="EVEN"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                        </children>
+                    </GridPane>
+                    <Button fx:id="rxButton" layoutX="14.0" layoutY="274.0" mnemonicParsing="false"
+                            onAction="#openRx" prefHeight="30.0" prefWidth="280.0" text="监 听"
+                            styleClass="btn-primary"
+                            AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+                            AnchorPane.topAnchor="300.0"/>
+                </AnchorPane>
+            </AnchorPane>
+        </HBox>
+    </AnchorPane>
+</VBox>
